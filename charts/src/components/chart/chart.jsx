@@ -17,9 +17,14 @@ function Chart(columns) {
 
     const { DATE, TICKETS_CREATED_IN_A_DAY, TICKETS_CLOSED_IN_A_DAY, TICKETS_TO_BE_ADDRESSED, TOTAL_ES_QUEUE } = columns.dataObject;
 
-    const formattedDates = DATE.map((dateString) => {
-        const date = new Date(dateString);
-        return date.toLocaleDateString('en-IN'); // Adjust the locale as needed
+    console.log(DATE)
+    const formattedDate = DATE.map(date => {
+        const formattedDate = new Date(date).toISOString().split('T')[0];
+        return formattedDate;
+    });
+    const formattedDates = formattedDate.map(date => {
+        const [year, month, day] = date.split('-');
+        return `${day}-${month}-${year}`;
     });
 
     const config = {
