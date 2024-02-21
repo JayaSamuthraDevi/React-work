@@ -17,7 +17,10 @@ function Chart(columns) {
 
     const { DATE, TICKETS_CREATED_IN_A_DAY, TICKETS_CLOSED_IN_A_DAY, TICKETS_TO_BE_ADDRESSED, TOTAL_ES_QUEUE } = columns.dataObject;
 
-    console.log(columns)
+    const formattedDates = DATE.map((dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-IN'); // Adjust the locale as needed
+    });
 
     const config = {
         chart: {
@@ -28,7 +31,7 @@ function Chart(columns) {
             align: 'left'
         },
         xAxis: [{
-            categories: DATE,
+            categories: formattedDates,
 
             crosshair: true
         }],
