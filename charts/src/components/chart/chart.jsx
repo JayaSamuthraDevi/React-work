@@ -17,19 +17,17 @@ function Chart(columns) {
 
     const { DATE, TICKETS_CREATED_IN_A_DAY, TICKETS_CLOSED_IN_A_DAY, TICKETS_TO_BE_ADDRESSED, TOTAL_ES_QUEUE } = columns.dataObject;
 
-    console.log(DATE)
     const formattedDates = DATE.map(dateString => {
         let dateObject = new Date(dateString);
         let day = dateObject.getDate();
-        let month = dateObject.getMonth() + 1; // Months in JavaScript are zero-indexed
+        let month = dateObject.getMonth() + 1; 
         let year = dateObject.getFullYear();
-        // Pad single-digit day and month with leading zeros
+       
         day = day < 10 ? '0' + day : day;
         month = month < 10 ? '0' + month : month;
 
         return `${day}-${month}-${year}`;
     });
-    console.log(formattedDates)
 
     const config = {
         chart: {
