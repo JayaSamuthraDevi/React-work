@@ -15,14 +15,14 @@ Dashboards.PluginHandler.addPlugin(DataGridPlugin);
 
 function Chart(columns) {
 
-    const { DATE, TICKETS_CREATED_IN_A_DAY, TICKETS_CLOSED_IN_A_DAY, TICKETS_TO_BE_ADDRESSED, TOTAL_ES_QUEUE } = columns.dataObject;
-
+    const { DATE, TICKETS_CREATED_IN_A_DAY, TICKETS_CLOSED_IN_A_DAY, TICKETS_TO_BE_ADDRESSED, TOTAL_ES_QUEUE ,TICKETS_IN_PROGRESS} = columns.dataObject;
+console.log(TICKETS_IN_PROGRESS)
+    console.log(columns)
     const formattedDates = DATE.map(dateString => {
         let dateObject = new Date(dateString);
         let day = dateObject.getDate();
         let month = dateObject.getMonth() + 1; 
         let year = dateObject.getFullYear();
-       
         day = day < 10 ? '0' + day : day;
         month = month < 10 ? '0' + month : month;
 
@@ -34,7 +34,7 @@ function Chart(columns) {
             zoomType: 'xy'
         },
         title: {
-            text: 'Tickets',
+            text: 'ES Tickets',
             align: 'left'
         },
         xAxis: [{
@@ -127,6 +127,15 @@ function Chart(columns) {
                 valueSuffix: ''
             }
         }
+            , {
+                name: 'Tickets In Progress',
+                type: 'spline',
+                color: '#0BDA51',
+                data: TICKETS_IN_PROGRESS,
+                tooltip: {
+                    valueSuffix: ''
+                }
+            }
         ],
         responsive: {
             rules: [{
